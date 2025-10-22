@@ -1,6 +1,8 @@
 package resources
 
 import (
+	"fmt"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -40,6 +42,7 @@ func ToResponseMessage(c *fiber.Ctx, status int, message string) error {
 }
 
 func ToResponseError(c *fiber.Ctx, status int, err any) error {
+	fmt.Println("ToResponseError ToResponseError", err)
 	return c.Status(status).JSON(Response[any]{
 		Error: err,
 	})

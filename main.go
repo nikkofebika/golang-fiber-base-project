@@ -29,6 +29,8 @@ func main() {
 	app.Get("users", userController.Index)
 	app.Get("users/:id", userController.Show)
 	app.Post("users", userController.Create)
+	app.Patch("users/:id", userController.Update)
+	app.Delete("users/:id", userController.Delete)
 
 	port := ":3000"
 	if err := app.Listen(":3000"); err != nil {

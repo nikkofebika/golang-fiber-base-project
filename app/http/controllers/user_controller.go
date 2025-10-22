@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"golang-fiber-base-project/app/http/requests"
 	"golang-fiber-base-project/app/http/resources"
 	"golang-fiber-base-project/app/services"
@@ -42,7 +43,7 @@ func (controller *userController) Show(c *fiber.Ctx) error {
 func (controller *userController) Create(c *fiber.Ctx) error {
 	request, err := validators.ValidateBody[requests.UserCreateRequest](c)
 	if err != nil {
-		return resources.ToResponse(c, err)
+		return resources.ToResponseError(c, fiber.StatusUnprocessableEntity, err)
 	}
 
 	if err := controller.service.Create(request); err != nil {
@@ -50,4 +51,32 @@ func (controller *userController) Create(c *fiber.Ctx) error {
 	}
 
 	return resources.ToResponseCreated(c)
+}
+
+func (controller *userController) Update(c *fiber.Ctx) error {
+	id, _ := strconv.Atoi(c.Params("id"))
+	fmt.Println("idku", id)
+
+	request, err := validators.ValidateBody[requests.UserUpdateRequest](c)
+	if err != nil {
+		return resources.ToResponseError(c, fiber.StatusUnprocessableEntity, err)
+	}
+	fmt.Println("requestku", request)
+
+	if err := controller.service.Update(uint(id), request); err != nil {
+		return resources.ToResponseError(c, fiber.StatusInternalServerError, err)
+	}
+
+	return resources.ToResponseUpdated(c)
+}
+
+func (controller *userController) Delete(c *fiber.Ctx) error {
+	id, _ := strconv.Atoi(c.Params("id"))
+
+	if err := controller.service.Delete(uint(id)); err != nil {
+		return resources.ToResponseError(c, fiber.StatusInternalServerError, err)
+	}
+
+	return resources.ToResponseDeleted(c)
+
 }

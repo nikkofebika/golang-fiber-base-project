@@ -10,9 +10,9 @@ type User struct {
 	Email    string `gorm:"uniqueIndex;not null"`
 	Password string `gorm:"not null"`
 	IsAdmin  bool   `gorm:"default:false"`
-	AuditCreatedModel
-	AuditUpdatedModel
-	AuditDeletedModel
+	// AuditCreatedModel
+	// AuditUpdatedModel
+	// AuditDeletedModel
 }
 
 // this is the way to define table name if we not follow the gorm convention
