@@ -6,3 +6,10 @@ type UserCreateRequest struct {
 	Password string `json:"password" validate:"required,min=6"`
 	IsAdmin  bool   `json:"is_admin" validate:"required,boolean"`
 }
+
+type UserUpdateRequest struct {
+	Name     *string `json:"name" validate:""`
+	Email    *string `json:"email" validate:"email"`
+	Password *string `json:"password" validate:"min=6"`
+	IsAdmin  *bool   `json:"is_admin" validate:"boolean"`
+}

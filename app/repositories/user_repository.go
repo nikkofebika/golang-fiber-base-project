@@ -1,6 +1,7 @@
 package repositories
 
 import (
+	"fmt"
 	"golang-fiber-base-project/app/models"
 
 	"gorm.io/gorm"
@@ -9,6 +10,7 @@ import (
 type UserRepositoryInterface interface {
 	FindAll() ([]models.User, error)
 	FindByID(id uint) (models.User, error)
+	FindByEmail(email string) (*models.User, error)
 	Create(user *models.User) error
 	Update(user *models.User) error
 	Delete(id uint) error
@@ -34,11 +36,21 @@ func (repository *userRepository) FindByID(id uint) (models.User, error) {
 	return user, err
 }
 
+func (repository *userRepository) FindByEmail(email string) (*models.User, error) {
+	var user models.User
+	if err := repository.DB.Where("email = ?", email).First(&user).Error; err != nil {
+		return nil, err
+	}
+
+	return &user, nil
+}
+
 func (repository *userRepository) Create(user *models.User) error {
 	return repository.DB.Create(user).Error
 }
 
 func (repository *userRepository) Update(user *models.User) error {
+	fmt.Println("Update repo", user)
 	return repository.DB.Save(user).Error
 }
 
