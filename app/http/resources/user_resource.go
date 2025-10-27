@@ -12,7 +12,7 @@ type UserResource struct {
 	DeletedAt *string `json:"deleted_at"`
 }
 
-func ToUserResource(user *models.User) UserResource {
+func NewUserResource(user *models.User) UserResource {
 	var deletedAt *string
 	if user.DeletedAt.Valid {
 		formatted := user.DeletedAt.Time.Format("2006-01-02 15:04:05")
@@ -30,17 +30,17 @@ func ToUserResource(user *models.User) UserResource {
 	}
 }
 
-func ToUserResources(users []models.User) []UserResource {
+func NewUserResources(users []models.User) []UserResource {
 	userResources := make([]UserResource, len(users))
 	for i := range users {
-		userResources[i] = ToUserResource(&users[i])
+		userResources[i] = NewUserResource(&users[i])
 	}
 	return userResources
 
 	// userResources := []UserResource{}
 
 	// for _, user := range users {
-	// 	userResource := ToUserResource(user)
+	// 	userResource := NewUserResource(user)
 	// 	userResources = append(userResources, userResource)
 	// }
 

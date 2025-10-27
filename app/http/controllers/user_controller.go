@@ -2,81 +2,80 @@ package controllers
 
 import (
 	"fmt"
+	"golang-fiber-base-project/app/exceptions"
+	"golang-fiber-base-project/app/helpers"
 	"golang-fiber-base-project/app/http/requests"
-	"golang-fiber-base-project/app/http/resources"
 	"golang-fiber-base-project/app/services"
 	"golang-fiber-base-project/app/validators"
-	"net/http"
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"
 )
 
-type userController struct {
-	service services.UserServiceInterface
+type UserController struct {
+	service   services.UserServiceInterface
+	validator *validators.Validator
 }
 
-func NewUserController(service services.UserServiceInterface) *userController {
-	return &userController{service}
+func NewUserController(service services.UserServiceInterface, validator *validators.Validator) *UserController {
+	return &UserController{service, validator}
 }
 
-func (controller *userController) Index(c *fiber.Ctx) error {
-	users, err := controller.service.FindAll()
+func (controller *UserController) Index(ctx *fiber.Ctx) error {
+	users, err := controller.service.FindAll(ctx.Context())
 	if err != nil {
-		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"error": err})
+		return err
 	}
 
-	return resources.ToResponsePagination(c, users, &resources.Meta{})
-	// return c.JSON(users)
+	return helpers.NewResponsePagination(ctx, users, &helpers.Meta{})
 }
 
-func (controller *userController) Show(c *fiber.Ctx) error {
-	id, _ := strconv.Atoi(c.Params("id"))
-	user, err := controller.service.FindByID(uint(id))
+func (controller *UserController) Show(ctx *fiber.Ctx) error {
+	id, _ := strconv.Atoi(ctx.Params("id"))
+	user, err := controller.service.FindByID(ctx.Context(), uint(id))
 	if err != nil {
-		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"error": err})
+		return err
 	}
 
-	return resources.ToResponse(c, user)
+	return helpers.NewResponse(ctx, user)
 }
 
-func (controller *userController) Create(c *fiber.Ctx) error {
-	request, err := validators.ValidateBody[requests.UserCreateRequest](c)
+func (controller *UserController) Create(ctx *fiber.Ctx) error {
+	request, err := validators.ValidateBody[requests.UserCreateRequest](controller.validator, ctx)
 	if err != nil {
-		return resources.ToResponseError(c, fiber.StatusUnprocessableEntity, err)
+		return exceptions.NewBadRequestException()
 	}
 
-	if err := controller.service.Create(request); err != nil {
-		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"error": err})
+	if err := controller.service.Create(ctx.Context(), request); err != nil {
+		return err
 	}
 
-	return resources.ToResponseCreated(c)
+	return helpers.NewResponseCreated(ctx)
 }
 
-func (controller *userController) Update(c *fiber.Ctx) error {
-	id, _ := strconv.Atoi(c.Params("id"))
+func (controller *UserController) Update(ctx *fiber.Ctx) error {
+	id, _ := strconv.Atoi(ctx.Params("id"))
 	fmt.Println("idku", id)
 
-	request, err := validators.ValidateBody[requests.UserUpdateRequest](c)
+	request, err := validators.ValidateBody[requests.UserUpdateRequest](controller.validator, ctx)
 	if err != nil {
-		return resources.ToResponseError(c, fiber.StatusUnprocessableEntity, err)
-	}
-	fmt.Println("requestku", request)
-
-	if err := controller.service.Update(uint(id), request); err != nil {
-		return resources.ToResponseError(c, fiber.StatusInternalServerError, err)
+		return exceptions.NewBadRequestException()
 	}
 
-	return resources.ToResponseUpdated(c)
+	if err := controller.service.Update(ctx.Context(), uint(id), request); err != nil {
+		return fiber.ErrInternalServerError
+	}
+
+	return helpers.NewResponseUpdated(ctx)
 }
 
-func (controller *userController) Delete(c *fiber.Ctx) error {
-	id, _ := strconv.Atoi(c.Params("id"))
+func (controller *UserController) Delete(ctx *fiber.Ctx) error {
+	id, _ := strconv.Atoi(ctx.Params("id"))
 
-	if err := controller.service.Delete(uint(id)); err != nil {
-		return resources.ToResponseError(c, fiber.StatusInternalServerError, err)
+	if err := controller.service.Delete(ctx.Context(), uint(id)); err != nil {
+		return fiber.ErrInternalServerError
 	}
 
-	return resources.ToResponseDeleted(c)
+	return helpers.NewResponseDeleted(ctx)
 
 }

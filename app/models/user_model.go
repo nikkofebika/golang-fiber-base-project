@@ -7,12 +7,12 @@ import (
 type User struct {
 	gorm.Model
 	Name     string `gorm:"size:100;not null"`
-	Email    string `gorm:"uniqueIndex;not null"`
-	Password string `gorm:"not null"`
+	Email    string `gorm:"size:100;uniqueIndex;not null"`
+	Password string `gorm:"size:100;not null"`
 	IsAdmin  bool   `gorm:"default:false"`
-	// AuditCreatedModel
-	// AuditUpdatedModel
-	// AuditDeletedModel
+	AuditCreatedModel
+	AuditUpdatedModel
+	AuditDeletedModel
 }
 
 // this is the way to define table name if we not follow the gorm convention

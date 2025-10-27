@@ -1,0 +1,53 @@
+{"ip":"127.0.0.1","latency":"2.862195ms","level":"info","method":"GET","msg":"request finished","path":"/users","query":"","status":200,"time":"2025-10-26T20:15:27+07:00"}
+{"ip":"127.0.0.1","latency":"971ns","level":"warning","method":"GET","msg":"request finished with error","path":"/users","query":"","status":200,"time":"2025-10-26T20:16:27+07:00"}
+{"ip":"127.0.0.1","latency":"4.514µs","level":"warning","method":"GET","msg":"request finished with error","path":"/users","query":"","status":200,"time":"2025-10-26T20:16:31+07:00"}
+{"ip":"127.0.0.1","latency":"1.17µs","level":"warning","method":"GET","msg":"request finished with error","path":"/users","query":"","status":200,"time":"2025-10-26T20:16:51+07:00"}
+{"ip":"127.0.0.1","latency":"3.13µs","level":"warning","method":"GET","msg":"request finished with error","path":"/users","query":"","status":200,"time":"2025-10-26T20:17:31+07:00"}
+time="2025-10-26T20:18:09+07:00" level=warning msg="request finished with error" ip=127.0.0.1 latency="1.836µs" method=GET path=/users query= status=200
+time="2025-10-26T20:18:44+07:00" level=warning msg="request finished with error" ip=127.0.0.1 latency="1.37µs" method=GET path=/users query= status=200
+time="2025-10-26T20:18:46+07:00" level=warning msg="request finished with error" ip=127.0.0.1 latency="2.106µs" method=GET path=/users query= status=200
+{"ip":"127.0.0.1","latency":"920ns","level":"warning","method":"GET","msg":"request finished with error","path":"/users","query":"","status":200,"time":"2025-10-26T20:19:39+07:00"}
+{"ip":"127.0.0.1","latency":"1.356µs","level":"warning","method":"GET","msg":"request finished with error","path":"/users","query":"","status":200,"time":"2025-10-26T20:20:50+07:00"}
+{"ip":"127.0.0.1","latency":"998ns","level":"warning","method":"GET","msg":"request finished with error","path":"/users","query":"","status":200,"time":"2025-10-26T20:21:05+07:00"}
+{"ip":"127.0.0.1","latency":"13.946115ms","level":"info","method":"GET","msg":"request finished","path":"/users/1","query":"","status":200,"time":"2025-10-26T20:21:10+07:00"}
+{"ip":"127.0.0.1","latency":"513.977µs","level":"info","method":"GET","msg":"request finished","path":"/users/1","query":"apa=opo\u0026iki=iku","status":200,"time":"2025-10-26T20:21:26+07:00"}
+{"ip":"127.0.0.1","latency":"2.94427ms","level":"info","method":"GET","msg":"request finished","path":"/users/1","query":"apa=opo\u0026iki=iku","status":200,"time":"2025-10-26T20:21:47+07:00"}
+{"ip":"127.0.0.1","latency":"515.466µs","level":"info","method":"GET","msg":"request finished","path":"/users/1","query":"apa=opo\u0026iki=iku","status":200,"time":"2025-10-26T20:21:50+07:00"}
+{"ip":"127.0.0.1","latency":"3.765µs","level":"warning","method":"GET","msg":"request finished with error","path":"/users/1","query":"apa=opo\u0026iki=iku","status":200,"time":"2025-10-26T20:22:06+07:00"}
+{"ip":"127.0.0.1","latency":"2.237µs","level":"warning","method":"GET","msg":"request finished with error","path":"/users/1","query":"apa=opo\u0026iki=iku","status":200,"time":"2025-10-26T20:22:09+07:00"}
+{"errornya":"Unauthorized","ip":"127.0.0.1","latency":"4.69µs","level":"warning","method":"GET","msg":"request finished with error","path":"/users/1","query":"apa=opo\u0026iki=iku","status":200,"time":"2025-10-26T20:23:00+07:00"}
+{"error":"Unauthorized","ip":"127.0.0.1","latency":"4.427µs","level":"warning","method":"GET","msg":"request finished with error","path":"/users/1","query":"apa=opo\u0026iki=iku","status":200,"time":"2025-10-26T20:23:38+07:00"}
+{"ip":"127.0.0.1","latency":"4.914µs","level":"warning","method":"GET","msg":"Unauthorized","path":"/users/1","query":"apa=opo\u0026iki=iku","status":200,"time":"2025-10-26T20:24:16+07:00"}
+{"ip":"127.0.0.1","latency":"1.311229ms","level":"info","method":"GET","msg":"request finished","path":"/users/1","query":"apa=opo\u0026iki=iku","status":200,"time":"2025-10-26T20:25:19+07:00"}
+{"ip":"127.0.0.1","latency":"1.260026ms","level":"info","method":"GET","msg":"request finished","path":"/users/1","query":"apa=opo\u0026iki=iku","status":200,"time":"2025-10-26T20:25:41+07:00"}
+{"ip":"127.0.0.1","latency":"2.349617ms","level":"info","method":"GET","msg":"request finished","path":"/users","query":"","status":200,"time":"2025-10-26T20:25:58+07:00"}
+{"ip":"127.0.0.1","latency":"66.032601ms","level":"warning","method":"POST","msg":"invalid credentials","path":"/auth/login","query":"","status":200,"time":"2025-10-26T20:27:02+07:00"}
+{"ip":"127.0.0.1","latency":"58.662962ms","level":"warning","method":"POST","msg":"invalid credentials","path":"/auth/login","query":"","status":200,"time":"2025-10-26T20:27:34+07:00"}
+{"ip":"127.0.0.1","latency":"57.340804ms","level":"warning","method":"POST","msg":"invalid credentials","path":"/auth/login","query":"","status":200,"time":"2025-10-26T20:27:39+07:00"}
+{"ip":"127.0.0.1","latency":"58.823298ms","level":"warning","method":"POST","msg":"invalid credentials","path":"/auth/login","query":"","status":200,"time":"2025-10-26T20:27:41+07:00"}
+{"ip":"127.0.0.1","latency":"57.433071ms","level":"warning","method":"POST","msg":"invalid credentials","path":"/auth/login","query":"","status":200,"time":"2025-10-26T20:27:44+07:00"}
+{"ip":"127.0.0.1","latency":"40.03µs","level":"warning","method":"POST","msg":"Cannot POST /api/register","path":"/api/register","query":"","status":200,"time":"2025-10-26T20:28:14+07:00"}
+{"ip":"127.0.0.1","latency":"26.615µs","level":"warning","method":"POST","msg":"Cannot POST /api/register","path":"/api/register","query":"","status":200,"time":"2025-10-26T21:02:44+07:00"}
+{"ip":"127.0.0.1","latency":"16.53µs","level":"warning","method":"POST","msg":"Cannot POST /api/register","path":"/api/register","query":"","status":200,"time":"2025-10-26T21:02:59+07:00"}
+{"ip":"127.0.0.1","latency":"4.387µs","level":"warning","method":"POST","msg":"Cannot POST /auth/register","path":"/auth/register","query":"","status":200,"time":"2025-10-26T21:03:09+07:00"}
+{"ip":"127.0.0.1","latency":"30.37µs","level":"warning","method":"POST","msg":"Cannot POST /auth/register","path":"/auth/register","query":"","status":200,"time":"2025-10-26T21:03:57+07:00"}
+{"ip":"127.0.0.1","latency":"24.107µs","level":"warning","method":"POST","msg":"Cannot POST /auth/register","path":"/auth/register","query":"","status":200,"time":"2025-10-26T21:04:20+07:00"}
+{"ip":"127.0.0.1","latency":"9.266089ms","level":"warning","method":"POST","msg":"record not found","path":"/auth/register","query":"","status":200,"time":"2025-10-26T21:05:01+07:00"}
+{"ip":"127.0.0.1","latency":"81.953267ms","level":"info","method":"POST","msg":"request finished","path":"/auth/register","query":"","status":201,"time":"2025-10-26T21:08:02+07:00"}
+{"ip":"127.0.0.1","latency":"58.128531ms","level":"warning","method":"POST","msg":"invalid credentials","path":"/auth/login","query":"","status":200,"time":"2025-10-26T21:08:18+07:00"}
+{"ip":"127.0.0.1","latency":"59.196388ms","level":"info","method":"POST","msg":"request finished","path":"/auth/login","query":"","status":200,"time":"2025-10-26T21:08:24+07:00"}
+{"ip":"127.0.0.1","latency":"58.633247ms","level":"info","method":"POST","msg":"request finished","path":"/auth/login","query":"","status":200,"time":"2025-10-26T21:08:31+07:00"}
+{"ip":"127.0.0.1","latency":"57.360337ms","level":"info","method":"POST","msg":"request finished","path":"/auth/login","query":"","status":200,"time":"2025-10-26T21:09:05+07:00"}
+{"ip":"127.0.0.1","latency":"89.404µs","level":"warning","method":"GET","msg":"Unauthorized","path":"/users","query":"","status":200,"time":"2025-10-26T21:09:10+07:00"}
+{"ip":"127.0.0.1","latency":"62.406µs","level":"warning","method":"GET","msg":"Unauthorized","path":"/users","query":"","status":200,"time":"2025-10-26T21:09:11+07:00"}
+{"ip":"127.0.0.1","latency":"98.895µs","level":"warning","method":"GET","msg":"Unauthorized","path":"/users","query":"","status":200,"time":"2025-10-26T21:09:27+07:00"}
+{"ip":"127.0.0.1","latency":"96.33µs","level":"warning","method":"GET","msg":"Unauthorized","path":"/users","query":"","status":200,"time":"2025-10-26T21:09:29+07:00"}
+{"ip":"127.0.0.1","latency":"201.383µs","level":"warning","method":"GET","msg":"Unauthorized","path":"/users","query":"","status":200,"time":"2025-10-26T21:12:15+07:00"}
+{"ip":"127.0.0.1","latency":"165.83µs","level":"warning","method":"GET","msg":"Unauthorized","path":"/users","query":"","status":200,"time":"2025-10-26T21:18:36+07:00"}
+{"ip":"127.0.0.1","latency":"7.168304ms","level":"info","method":"GET","msg":"request finished","path":"/users","query":"","status":200,"time":"2025-10-26T21:35:44+07:00"}
+{"ip":"127.0.0.1","latency":"3.994295ms","level":"info","method":"GET","msg":"request finished","path":"/users","query":"","status":200,"time":"2025-10-26T21:47:57+07:00"}
+{"ip":"127.0.0.1","latency":"127.048µs","level":"warning","method":"GET","msg":"Unauthorized","path":"/users","query":"","status":200,"time":"2025-10-26T21:48:04+07:00"}
+{"ip":"127.0.0.1","latency":"900.472µs","level":"info","method":"GET","msg":"request finished","path":"/users","query":"","status":200,"time":"2025-10-26T21:48:08+07:00"}
+{"ip":"127.0.0.1","latency":"207.006µs","level":"warning","method":"GET","msg":"Unauthorized","path":"/users","query":"","status":200,"time":"2025-10-26T21:48:39+07:00"}
+{"ip":"127.0.0.1","latency":"2.524873ms","level":"info","method":"GET","msg":"request finished","path":"/users","query":"","status":200,"time":"2025-10-26T21:48:58+07:00"}
+{"ip":"127.0.0.1","latency":"5.431814ms","level":"info","method":"GET","msg":"request finished","path":"/users","query":"","status":200,"time":"2025-10-26T22:47:05+07:00"}

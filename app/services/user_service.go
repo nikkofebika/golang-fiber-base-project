@@ -1,8 +1,9 @@
 package services
 
 import (
-	"errors"
-	"fmt"
+	"context"
+	"golang-fiber-base-project/app/exceptions"
+	"golang-fiber-base-project/app/helpers"
 	"golang-fiber-base-project/app/http/requests"
 	"golang-fiber-base-project/app/http/resources"
 	"golang-fiber-base-project/app/models"
@@ -12,11 +13,11 @@ import (
 )
 
 type UserServiceInterface interface {
-	FindAll() ([]resources.UserResource, error)
-	FindByID(id uint) (resources.UserResource, error)
-	Create(request *requests.UserCreateRequest) error
-	Update(id uint, user *requests.UserUpdateRequest) error
-	Delete(id uint) error
+	FindAll(ctx context.Context) ([]resources.UserResource, error)
+	FindByID(ctx context.Context, id uint) (resources.UserResource, error)
+	Create(ctx context.Context, request *requests.UserCreateRequest) error
+	Update(ctx context.Context, id uint, user *requests.UserUpdateRequest) error
+	Delete(ctx context.Context, id uint) error
 }
 
 type userService struct {
@@ -27,42 +28,45 @@ func NewUserService(repository repositories.UserRepositoryInterface) UserService
 	return &userService{repository}
 }
 
-func (service *userService) FindAll() ([]resources.UserResource, error) {
-	users, err := service.repository.FindAll()
+func (service *userService) FindAll(ctx context.Context) ([]resources.UserResource, error) {
+	users, err := service.repository.FindAll(ctx)
 	if err != nil {
-		return nil, err
+		return nil, exceptions.NewDatabaseException(err)
 	}
 
-	return resources.ToUserResources(users), nil
+	return resources.NewUserResources(users), nil
 }
 
-func (service *userService) FindByID(id uint) (resources.UserResource, error) {
-	user, err := service.repository.FindByID(id)
+func (service *userService) FindByID(ctx context.Context, id uint) (resources.UserResource, error) {
+	user, err := service.repository.FindByID(ctx, id)
 
-	return resources.ToUserResource(&user), err
+	return resources.NewUserResource(&user), err
 }
 
-func (service *userService) Create(request *requests.UserCreateRequest) error {
-	user := models.User{
-		Name:     request.Name,
-		Email:    request.Email,
-		Password: request.Password,
-		IsAdmin:  request.IsAdmin,
-	}
-
-	return service.repository.Create(&user)
-}
-
-func (service *userService) Update(id uint, request *requests.UserUpdateRequest) error {
-	user, err := service.repository.FindByID(id)
+func (service *userService) Create(ctx context.Context, request *requests.UserCreateRequest) error {
+	password, err := helpers.HashPassword(request.Password)
 	if err != nil {
 		return err
 	}
 
-	fmt.Println("Update service", user)
+	user := models.User{
+		Name:     request.Name,
+		Email:    request.Email,
+		Password: password,
+		IsAdmin:  request.IsAdmin,
+	}
+
+	return service.repository.Create(ctx, &user)
+}
+
+func (service *userService) Update(ctx context.Context, id uint, request *requests.UserUpdateRequest) error {
+	user, err := service.repository.FindByID(ctx, id)
+	if err != nil {
+		return err
+	}
 
 	if request.Email != nil {
-		existUser, _ := service.repository.FindByEmail(*request.Email)
+		existUser, _ := service.repository.FindByEmail(ctx, *request.Email)
 		if existUser != nil && existUser.ID != user.ID {
 			return err
 		}
@@ -76,7 +80,6 @@ func (service *userService) Update(id uint, request *requests.UserUpdateRequest)
 
 	if request.Password != nil {
 		bytes, err := bcrypt.GenerateFromPassword([]byte(*request.Password), bcrypt.DefaultCost)
-		fmt.Println("Update service bytes", string(bytes))
 		if err != nil {
 			return err
 		}
@@ -87,20 +90,15 @@ func (service *userService) Update(id uint, request *requests.UserUpdateRequest)
 	if request.IsAdmin != nil {
 		user.IsAdmin = *request.IsAdmin
 	}
-	fmt.Println("Update service SELESAI", user)
 
-	return service.repository.Update(&user)
+	return service.repository.Update(ctx, &user)
 }
 
-func (service *userService) Delete(id uint) error {
-	user, err := service.repository.FindByID(id)
+func (service *userService) Delete(ctx context.Context, id uint) error {
+	_, err := service.repository.FindByID(ctx, id)
 	if err != nil {
 		return err
 	}
 
-	if &user == nil {
-		return errors.New("user not found")
-	}
-
-	return service.repository.Delete(id)
+	return service.repository.Delete(ctx, id)
 }
