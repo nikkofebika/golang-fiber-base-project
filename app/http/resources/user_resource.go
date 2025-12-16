@@ -40,8 +40,9 @@ func NewUserResources(users []models.User) []UserResource {
 	// userResources := []UserResource{}
 
 	// for _, user := range users {
-	// 	userResource := NewUserResource(user)
+	// 	userResource := NewUserResource(&user)
 	// 	userResources = append(userResources, userResource)
 	// }
 
+	// return userResources
 }
