@@ -11,10 +11,6 @@ import (
 	"gorm.io/gorm"
 )
 
-// type ValidatorInterface interface {
-// 	registerCustomRules()
-// }
-
 type Validator struct {
 	v  *validator.Validate
 	DB *gorm.DB
@@ -105,7 +101,7 @@ func (val *Validator) translateError(fe validator.FieldError) string {
 // Reflection helpers
 func reflectType(obj any) reflect.Type {
 	t := reflect.TypeOf(obj)
-	if t.Kind() == reflect.Ptr {
+	if t.Kind() == reflect.Pointer {
 		t = t.Elem()
 	}
 	return t
